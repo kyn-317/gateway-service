@@ -1,0 +1,42 @@
+server:
+  port: 8070
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user_route
+          uri: http://localhost:8080
+          predicates:
+            - Path=/user/**
+          filters:
+            - StripPrefix=1
+        - id: product_route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/product/**
+          filters:
+            - StripPrefix=1
+        - id: cart_route
+          uri: http://localhost:8081
+          predicates:
+            - Path=/cart/**
+          filters:
+            - JwtAuthentication
+            - StripPrefix=1
+        - id: order_route
+          uri: http://localhost:8082
+          predicates:
+            - Path=/order/**
+          filters:
+            - JwtAuthentication
+            - StripPrefix=1
+        - id: message_route
+          uri: http://localhost:8085
+          predicates:
+            - Path=/message/**
+          filters:
+            - JwtAuthentication
+            - StripPrefix=1
+          
+            
