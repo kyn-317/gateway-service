@@ -22,21 +22,19 @@ spring:
           predicates:
             - Path=/cart/**
           filters:
-            - JwtAuthentication
+            - JwtAuthenticationFilter
             - StripPrefix=1
         - id: order_route
           uri: http://localhost:8082
           predicates:
             - Path=/order/**
           filters:
-            - JwtAuthentication
+            - JwtAuthenticationFilter
             - StripPrefix=1
         - id: message_route
           uri: http://localhost:8085
           predicates:
             - Path=/message/**
           filters:
-            - JwtAuthentication
+            - JwtAuthenticationFilter
             - StripPrefix=1
-          
-            
